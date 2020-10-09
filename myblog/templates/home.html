@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>BLOG POST</h1>
+
+<ul>
+
+  <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Body</th>
+      <th scope="col">Category</th>
+      <th scope="col">Date Created</th>
+      <th scope="col">Author Name</th>
+    <!--   {% if user.is_authenticated %}
+      <th scope="col">Actions</th>
+      {% endif %} -->
+    </tr>
+  </thead>
+  <tbody>
+  	{% for post in object_list %}
+    <tr>
+      <th scope="row"><a href="{% url 'blog-details' post.pk %}">{{ post.title }}</a></th>
+      <th scope="row">{{ post.body|slice:":150" }}</th>
+      <td><a href="{% url 'category' post.category|slugify %}">{{ post.category }} </a></td>
+      <th scope="row">{{ post.date_created }}</th>
+      <td>{{ post.author.first_name }} {{ post.author.last_name }} </td>
+      <!-- <td>
+	    <small>
+			{% if user.is_authenticated %}
+  			{% if user.id == post.author.id %}
+          <a href="{% url 'update_post' post.pk %}"> Edit </a>
+
+          <a href="{% url 'delete_post' post.pk %}">| Delete</a>
+          </small><br/>
+        {% endif %}
+			{% endif %}
+		</small>
+		
+	  </td> -->
+    </tr>
+{% endfor%}
+   </tbody>
+   </table> 
+</ul>
+{% endblock %}

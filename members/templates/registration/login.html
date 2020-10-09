@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Login</h1>
+<div class="form-group">
+	</br>
+ <form method="POST">
+ 		{% csrf_token %}
+ 		<!-- {{ form.as_p }} -->
+ <div class="form-group">
+    <input type="text" name="username" class="form-control" placeholder="Username">
+  </div>
+  <div class="form-group">
+    <input type="password" name="password" class="form-control" placeholder="Password">
+  </div>
+</br>
+   	<button class="btn btn-secondary">Login</button>
+</form>
+
+</br>
+Not Registered? Sign Up <a href="{% url 'register' %}">Here...</a>
+</div>
+
+
+{% endblock %}

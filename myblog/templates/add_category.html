@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+	{% if user.id == post.author.id %}
+		<h1>Create New Blog Category</h1>
+		<div class="form-group">
+		 <form method="POST">
+		 		{% csrf_token %}
+		 		{{ form.as_p }}
+		 		<button class="btn btn-secondary">Create</button>
+		 </form>	
+		</div>
+	{% else %}	
+		<h1>Unathorized User....</h1>	
+	{% endif %}
+{% else %}
+
+	<h1>Unathorized User....</h1>	
+
+{% endif %}
+
+
+{% endblock %}
